@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ABC COLLEGE - MOVE AND SEE</title>
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+<style>
+.hud{position:fixed; top:0; left:0; right:0; background:#000; color:#ffca28; font-family:monospace; text-align:center; padding:10px; border-bottom:4px solid #ffca28; z-index:999; font-size:16px; letter-spacing:2px}
+.click{position:fixed; inset:0; display:flex; justify-content:center; align-items:center; background:rgba(0,0,0,0.85); z-index:1000; cursor:pointer}
+.click div{background:#ffca28; color:#000; padding:30px 60px; font-family:Arial Black; font-size:32px; border:6px solid #000; box-shadow:0 0 40px #ffca28; animation:pulse 0.8s infinite alternate; text-align:center}
+@keyframes pulse{to{transform:scale(1.05); box-shadow:0 0 60px #ffca28}}
+</style>
+</head>
+<body>
+<div class="hud">W = FORWARD | S = BACK | A = LEFT | D = RIGHT | MOUSE = LOOK AROUND | ESC = STOP</div>
+<div class="click" id="clickBox"><div>👆 CLICK HERE TO ENTER<br><span style="font-size:18px">Then use WASD to WALK inside 3D College</span><br><span style="font-size:14px">ABC COLLEGE - EXTRAORDINARY</span></div></div>
+
+<a-scene background="color: #050505" shadow="type: pcfsoft">
+
+  <a-light type="ambient" intensity="0.5" color="#ffffff"></a-light>
+  <a-light type="directional" intensity="1.2" position="2 5 2" castShadow="true"></a-light>
+  <a-light type="point" intensity="2" color="#ffca28" position="0 3 -2" distance="10"></a-light>
+
+  <!-- PLAYER - YOU CAN MOVE -->
+  <a-entity id="rig" movement-controls="fly: false; constrainToNavMesh: false" position="0 1.6 6">
+    <a-entity camera look-controls="pointerLockEnabled: true" wasd-controls="acceleration: 20" position="0 0 0">
+      <a-cursor color="#ffca28" fuse="false"></a-cursor>
+    </a-entity>
+  </a-entity>
+
+  <!-- CLOSED BIG ROOM - 20x20 -->
+  <a-box position="0 -0.5 -2" width="22" height="0.5" depth="22" color="#5d4037" shadow="receive: true"></a-box>
+  <a-box position="0 5.5 -2" width="22" height="0.5" depth="22" color="#e8dcc6"></a-box>
+  <a-box position="0 2.5 -13" width="22" height="6" depth="0.5" color="#f5e6c8"></a-box>
+  <a-box position="-11 2.5 -2" width="0.5" height="6" depth="22" color="#d7c4a0"></a-box>
+  <a-box position="11 2.5 -2" width="0.5" height="6" depth="22" color="#d7c4a0"></a-box>
+  <a-box position="0 2.5 9" width="22" height="6" depth="0.5" color="#111"></a-box>
+
+  <!-- HUGE FRAME - YOU WALK TOWARDS IT -->
+  <a-box position="0 4.2 -2" width="10" height="0.6" depth="1" color="#1a0f08"></a-box>
+  <a-box position="0 0.2 -2" width="10" height="0.6" depth="1" color="#1a0f08"></a-box>
+  <a-box position="-4.7 2.2 -2" width="0.6" height="4.5" depth="1" color="#3e2723"></a-box>
+  <a-box position="4.7 2.2 -2" width="0.6" height="4.5" depth="1" color="#3e2723"></a-box>
+  <a-box position="0 4.2 -2" width="9.4" height="0.2" depth="1.1" color="#ffca28"></a-box>
+
+  <!-- CLASSROOM INSIDE - BIG CLOSED -->
+  <a-box position="0 3 -7.8" width="6" height="2" depth="0.2" color="#0a1f14"></a-box>
+  <a-text value="ABC COLLEGE" position="0 3.4 -7.6" align="center" width="10" color="#8aff8a" font="exo2bold"></a-text>
+  <a-text value="DREAM BIG - BUILD FUTURE - E=mc2" position="0 2.8 -7.6" align="center" width="7" color="#ffeb99"></a-text>
+
+  <!-- FLOOR INSIDE -->
+  <a-plane position="0 0.01 -2.5" width="8.5" height="9" rotation="-90 0 0" color="#d7b899"></a-plane>
+
+  <!-- BIG BENCHES - YOU CAN WALK BETWEEN THEM -->
+  <a-box position="0 0.6 1" width="7" height="0.15" depth="0.7" color="#4e342e" shadow="cast: true"></a-box>
+  <a-cylinder position="-2.2 1 1" radius="0.3" height="0.6" color="#ffdbac"></a-cylinder>
+  <a-cylinder position="-0.7 1 1" radius="0.3" height="0.6" color="#ffdbac"></a-cylinder>
+  <a-cylinder position="0.7 1 1" radius="0.3" height="0.6" color="#ffdbac"></a-cylinder>
+  <a-cylinder position="2.2 1 1" radius="0.3" height="0.6" color="#ffdbac"></a-cylinder>
+
+  <a-box position="0 0.6 -0.8" width="6.5" height="0.15" depth="0.7" color="#4e342e" shadow="cast: true"></a-box>
+  <a-cylinder position="-1.8 1 -0.8" radius="0.3" height="0.6" color="#ffdbac"></a-cylinder>
+  <a-cylinder position="0 1 -0.8" radius="0.3" height="0.6" color="#ffdbac"></a-cylinder>
+  <a-cylinder position="1.8 1 -0.8" radius="0.3" height="0.6" color="#ffdbac"></a-cylinder>
+
+  <a-box position="0 0.6 -2.5" width="6" height="0.15" depth="0.7" color="#3e2723" shadow="cast: true"></a-box>
+  <a-cylinder position="-1.2 1 -2.5" radius="0.3" height="0.6" color="#ffdbac"></a-cylinder>
+  <a-cylinder position="1.2 1 -2.5" radius="0.3" height="0.6" color="#ffdbac"></a-cylinder>
+
+  <a-box position="0 0.9 -5" width="2.2" height="0.15" depth="1" color="#1a0f08"></a-box>
+  <a-cylinder position="0 1.5 -5" radius="0.35" height="0.8" color="#ffdbac"></a-cylinder>
+
+  <!-- POSTERS BIG -->
+  <a-plane position="-3.8 2.5 -4" width="1.8" height="1.2" color="white" rotation="0 30 0"></a-plane>
+  <a-text value="A B C D E\n1 2 3 4 5" position="-3.8 2.5 -3.9" align="center" width="4" color="red" rotation="0 30 0"></a-text>
+
+  <a-plane position="3.8 2.5 -4" width="1.8" height="1.2" color="#ffca28" rotation="0 -30 0"></a-plane>
+  <a-text value="WINNER\n2026" position="3.8 2.5 -3.9" align="center" width="5" color="black" rotation="0 -30 0"></a-text>
+
+  <!-- SIGN -->
+  <a-box position="0 4.2 -1" width="4.5" height="0.7" depth="0.4" color="black"></a-box>
+  <a-box position="0 4.2 -0.9" width="4.3" height="0.5" depth="0.42" color="#ffca28"></a-box>
+  <a-text value="ABC COLLEGE - EXTRAORDINARY" position="0 4.2 -0.7" align="center" width="8" color="black" font="exo2bold"></a-text>
+
+</a-scene>
+
+<script>
+const clickBox=document.getElementById('clickBox');
+clickBox.addEventListener('click',()=>{
+  clickBox.style.display='none';
+  document.querySelector('a-scene').canvas.requestPointerLock();
+});
+document.addEventListener('pointerlockchange',()=>{
+  if(document.pointerLockElement==null){ clickBox.style.display='flex'; }
+});
+</script>
+
+</body>
+</html>
